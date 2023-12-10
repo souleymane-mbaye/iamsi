@@ -1,0 +1,21 @@
+c La formule F de l'exercice 2 de la feuille de TD
+c
+p cnf 5 6
+c
+c a v b => C1
+1 2 0
+c
+c -a v b v c => C2
+-1 2 3 0
+c
+c b v -c v d => C3
+2 -3 4 0
+c
+c -b v -e => C4
+-2 -5 0
+c
+c e v d => C5
+5 4 0
+c
+c -d => C6
+-4 0

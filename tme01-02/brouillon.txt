@@ -1,0 +1,42 @@
+def minimax(position,prof):
+  """Fonction recursive qui retourne le coup optimal à jouer selon si c'est NORD qui joue ou SUD
+
+  Args:
+      position (dict): la position
+      profondeur (int): entier correspondant à la profondeur du sous arbre
+
+  Returns:
+      (int,int): retourne le coup optimal et l'évaluation du coup
+  """
+  
+  coups = coups_valides(position)
+  coup_op = 0 # initilisation du coup optimal
+  ev_op = 0
+
+  if len(coups) < 1:  # ce cas n'arrive jamais vu qu'il est anticipé
+    return coup_op,ev_op
+  
+  if len(coups) == 1:  # s'il y'a qu'un seul coup possible pas de choix à faire(pas besoin de la recursion)
+    coup = coups[0]
+    new_pos = aw.joue_un_coup(position,coup)
+    return coup,evalue(new_pos)
+    
+  # on choisit le meilleur coup parmi les coups autorisés
+  for coup in coups:
+    if prof == 0: # feuille de l'arbre(profondeur atteinte)
+      new_pos = aw.joue_un_coup(position,coup)
+      ev = evalue(new_pos)
+    else: # noeud interne
+      # si un joueur joue ce coup
+      new_pos = aw.joue_un_coup(position,coup)
+      # l'adversaire va jouer son cout optimal à partir de cette dernière position
+      coup_ad,ev = minimax(new_pos,prof-1)  # adversaire joue
+    
+    # si c'est sud qui joue on maximise l'évaluation de la position et mise à jour du meilleur coup
+    if position['trait'] == 'SUD' and ev > ev_op:
+      coup_op,ev_op = coup,ev
+    # si c'est nord qui joue on minimise l'évaluation de la position et mise à jour du meilleur coup
+    if position['trait'] == 'NORD' and ev < ev_op:
+      coup_op,ev_op = coup,ev
+  
+  return coup_op,ev_op

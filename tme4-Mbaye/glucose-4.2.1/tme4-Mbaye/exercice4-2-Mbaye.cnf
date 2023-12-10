@@ -1,0 +1,42 @@
+c Théorie de l'exercice 4 de la feuille de TD
+c
+p cnf 16 13
+c
+c si1 => x1 v x2
+1 2 0
+c
+c si2 => -x2 v -x3
+-2 -3 0
+c
+c si3 => -x2 v x4 v -x5
+-2 4 -5 0
+c
+c si4 => x3 v x5 v x6
+3 5 6 0
+c
+c si5 => x7 v -x6 v -x8
+7 -6 -8 0
+c
+c si6 => x4 v x8 v x9
+4 8 9 0
+c
+c si7 => x10 v -x9 v x11
+10 -9 11 0
+c
+c si8 => x8 v -x11 v -x12
+8 -11 -12 0
+c
+c si9 => x12 v -x13
+12 -13 0
+c
+c si10 => x12 v x14
+12 14 0
+c
+c si11 => -x6 v x12 v x15
+-6 12 15 0
+c
+c si12 => -x14 v x13 v -x16
+-14 13 -16 0
+c
+c si13 => -x14 v -x15 v x16
+-14 -15 16 0
